@@ -83,10 +83,10 @@ class Tensor:
           for j in range(self.shape[1]):
             temp.append(self.data[i][j])
           self.tensor.append(temp)
-      else: 
+      else:
         for i in self.data:
           self.tensor.append(i)
-      
+
     def print(self):
         print(self.tensor)
 # END TENSOR CLASS ============================================================
@@ -110,7 +110,7 @@ class Dense:
         for i in dot_prod:
             self.layer.append([sum(row) for row in zip(i, self.bias)])
         return self.layer
-    
+
     def reLU(self):
       for i in range(len(self.layer)):
         for j in range(len(self.layer[0])):
@@ -129,7 +129,7 @@ class Dense:
 # Load dataset
 mnist = tf.keras.datasets.mnist
 
-# Split into train and test 
+# Split into train and test
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
 # Regularize
@@ -153,10 +153,10 @@ x_test = Tensor(x_test[0:batch], x_test[0:batch].shape)
 
 # define data and shape to create tensors
 
-w0_from_drive = np.load(F"/content/gdrive/My Drive/w0.npy")
-b0_from_drive = np.load(F"/content/gdrive/My Drive/b0.npy")
-w1_from_drive = np.load(F"/content/gdrive/My Drive/w1.npy")
-b1_from_drive = np.load(F"/content/gdrive/My Drive/b1.npy")
+w0_from_drive = np.load(F"/content/gdrive/My Drive/Data/w0.npy")
+b0_from_drive = np.load(F"/content/gdrive/My Drive/Data/b0.npy")
+w1_from_drive = np.load(F"/content/gdrive/My Drive/Data/w1.npy")
+b1_from_drive = np.load(F"/content/gdrive/My Drive/Data/b1.npy")
 
 """### Convert to Tensor class"""
 
@@ -184,4 +184,3 @@ layer2 = dense1.reLU() # outputs one-hot vector for digits 0-9
 
 acc = accuracy(layer2, y_test[0:batch])
 print("Model accuracy: %f%%" % (acc*100))
-
